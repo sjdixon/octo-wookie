@@ -1,0 +1,62 @@
+% THIS IS SIGPROC-SP.TEX - VERSION 3.1
+% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
+% APRIL 2009
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V3.2SP) *DOES NOT* produce:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) Page numbering
+% ---------------------------------------------------------------------------------------------------------------
+
+\documentclass{acm_proc_article-sp}
+\usepackage{biblatex}
+\bibliography{biblio.bib}
+
+\begin{document}
+
+\title{CPSC 526 Final Report}
+\subtitle{Tutorial Section: T02}
+\date{\today}
+\numberofauthors{3} 
+\author{
+\alignauthor
+Stephen Dixon\\
+       \email{sjdixon2@gmail.com}
+\alignauthor
+Kevin Chum\\
+       \email{kchum@gmail.com}
+\alignauthor
+Rafael Benicio\\
+       \email{rafaelbenicio2@gmail.com}
+}
+
+\maketitle
+\begin{abstract}
+Abstract
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+\terms{Experimentation}
+
+\keywords{Network Security, Experiential Learning}
+
+\section{Introduction}
+
+This is an introduction.
+
+\section{Conclusion}
+
+This is a conclusion\cite{mint16:release}.
+
+
+\printbibliography{}
+
+\end{document}
