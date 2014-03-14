@@ -1,0 +1,59 @@
+Write-up – Rafael Benicio
+Preventing
+
+(1)	prevent systems from being infected
+
+The first approach is to prevent systems from being infected. There are a range of existing techniques, including anti-virus software, firewalls, and automatic patching. Basically, protecting our systems from Internet makes it challenge for the attacker. 
+
+(2)	directly detect command and control communication among bots and between bots and controllers 
+
+The second approach is to directly detect botnet command and control traffic. Botnets today are often controlled using Internet Relay Chat (IRC) and one possible method of detecting IRC-based botnets is to monitor TCP port 6667 which is the standard port used for IRC traffic [1]. One could also look for non-human behavioral characteristics in traffic, or even build IRC server scanners to identify potential botnets. We should make sure all doors would not be a risk. 
+
+(3)	detect the secondary features of a bot infection such as propagation or attacks.
+
+By identifying secondary features of a bot infection such as propagation or attack behavior. Rather than directly attempting to find command and control traffic, the key to this approach is the correlation of data from different sources to locate bots and discover command and control connections.
+
+How to detect a botnet?
+Basically we can detect a botnet basing by behaviors. We should obtain traces of actual botnet traffic, after this we should constructed a botnet test facility because the facility involves a simple setup modeled along the lines of a chat-based botnet architecture. 
+
+Botnet C&C  
+The major design challenge is to generate a botnet that is difficult to be shut down, or monitored by defenders or other attackers. 
+
+How they are organized and weakness
+
+According with Ping Wang, Sherri Sparks, and Cliff C. Zou, Member, the architecture would be like this. Compromised machines receive commands and controls from servers and these servers are controlled by botmasters. 
+ 
+Some people think that C&C servers are invincible but they are not. According with Ping Wang, Sherri Sparks, and Cliff C. Zou, Member, from a botmaster’s perspective, the C&C servers are the fundamental weak points in current botnet architectures. First, a botmaster will lose control of her botnet once the limited number of C&C servers are shut down by defenders. Second, defenders could easily obtain the identities (e.g.,IP addresses) of all C&C servers based on their service traffic to a large number of bots [2], or simply from one single captured bot (which contains the list of C&C servers).Third, an entire botnet may be exposed once a C&C server in the botnet is hijacked or captured by defenders [3]. As network security practitioners put more resources and effort into defending against botnet attacks, hackers will develop and deploy the next generation of botnets with different control architecture.  
+
+Also, there is some weakness related with P2P. In some cases they remove bootstamp, Some bot utilizes Gnutella cache servers for its bootstamp process because of this some of them can be easily shut down and block traffics from those caches servers. With diverse issues with bots there are some practical challenges faced by botmasters such as how is easily monitor and obtain the complete information of a bot by its botmaster. I read about possible advanced hybrid design for P2P botnet. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Covered Articles: 
+Ping Wang, Sherri Sparks, and Cliff C. Zou, Member, Hybrid peer-to-peer botnet vol. 7, no. 2, April-June 2010
+W. Timothy Strayer, Robert Walsh, Carl Livadas, and David LapsleyAn Advanced Detecting Botnets with Tight Command and Control 
+
+Citations:
+[1] A. C. Snoeren, C. Partridge, L. A. Sanchez, C. E. Jones, F. Tchakountio, S. T. Kent, and W. T.
+Strayer, “Single-IP Packet Traceback,” IEEE/ACM Transactions on Networking (ToN),
+Volume 10, Number 6, December 2002. 
+
+[2] J.R. Binkley and S. Singh, “An Algorithm for Anomaly-Based Botnet Detection,” Proc. USENIX Second Workshop Steps to Reducing Unwanted Traffic on the Internet (SRUTI ’06), June 2006.
+
+[3] D. Dagon, C. Zou, and W. Lee, “Modeling Botnet Propagation Using Time Zones,” Proc. 13th Ann. Network and Distributed System Security Symp. (NDSS ’06), pp. 235-249, Feb. 2006.
