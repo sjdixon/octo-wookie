@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{biblatex}
+\bibliography{biblio}
+
+\begin{document}
+
+\section{Taxonomy of Botnets Review}
+
+\section{Questions}
+\begin{itemize}
+\item What is the main point or application of the article(s) you read.
+\item What are their arguments?
+\item Why do they think it is significant?
+\item How significant is it to our project?
+\end{itemize}
+
+
+\section{A Taxonomy of Botnet Structures}
+
+David Dagon, Guofei Gu, Christopher Lee, Wenke Lee
+
+This paper has 3 main applications: 1) taxonomy of botnet structures, 2) key metrics for measuring the utility of botnets for various activities, 3) distruption potential.
+
+They think this is significant because, by researching the structural and organization potential of botnets, we can craft defense strategies, disrupt botnet activities, and remediate infected networks.\cite{dagon:model}
+
+\subsection{Core Arguments}
+
+% dagon:model:properties
+
+The authors argue that three major botnet utilities are effectiveness, efficiency, and robustness.  
+
+Effectiveness can be measured in terms of bandwidth available and botnet size.  Many bots are diurnal and cannot be active at all times; bots also vary in terms of how they are connected. According to figure 1, low bandwidth bots have a significant effect on average bandwidth when they are online fo 4 hours..  
+
+
+Efficiency can be measured in terms of the average geodesic length of a network.  The average geodesic length represents the average length of the shortest edge connecting any two nodes in the network.  If l is large, then the network is not efficient, because a transmission requires too many hops.  The inverse geodesic length, on the other hand, is a normalized value ranging from 0 (no edges) to 1 (fully connected) that measures the extent to which nodes in the graph are connected.  
+
+The extent to which nodes are connected also affects the robustness of the network, because if nodes are cleaned, then there are fewer routes in the network connecting nodes. If too many nodes are cleaned, then the graph will become disconnected.
+
+The robustness of the network can also be captured by measuring redundancy.  Local transivity measures the likelihood that for two connected node pairs sharing a common vertex (u,v) and (u,w), whether nodes (v,w) are also connected.  Local transivity is also normalized from 0 to 1 (where 1 is complet mesh).
+
+Application: for key cracking and stolen programs, reliable redundant storage is important because botnets are diurnal; to ensure uninterrupted cracking and storage botmasters routinely designate multiple victims to store identical files.
+
+\subsection{Botnet Network Models}
+
+%dagon:model:model
+\subsubsection{Erdos-Renyi Random Graphs}
+
+Such networks have a logarithmically increasing inverse geodesic distance, and each node has a constant random chance of being connected to any other node.
+
+Suppose the average number of connections is k.  If k is high, then the network is endangered because a single compromised machine will reveal a large number of other bots; as k increases, it also strains the bot's available resources. If k is low, then the network takes a hit to its efficiency and robustness. One countermeasure is to randomly scan the internet for other bots; although noisy, its a last resort.
+
+\subsubsection{Watts-Strogatz Small World Model}
+
+In such a network, a regional network of local connections is created within a ring, within a range r.  Each bot is further connected with probability P to nodes on the opposite side of the ring through a shortcut.  Typically P is low and the network has a length of l = logN.
+
+This type of network could spread by giving each bot a list of r prior victims.  r is usually kept low in order to frustrate remediation and recovery.  In propagation-created botnets, often P=0 to avoid transmitting a lengthy list of prior victims.
+
+\subsubsection{Barabasi-Albert Scale Free Models}
+
+In this model, the more links a node has, the more likely it is to receive new links.  This creates a positive reinforcement cycle where initially random variations are reinforced, thus greatly magnifying differences.  "The rich get richer".
+
+\end{document}
