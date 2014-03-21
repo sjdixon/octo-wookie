@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{biblatex}
+\addbibresource{../Papers/ESORICS/esorics.bib}
+
+\title{Write-up 1}
+\author{Kevin}
+\date{March 9-14, 2014}
+
+\begin{document}
+	\maketitle
+
+\section{Questions}
+	\begin{itemize}
+		\item What is the main point or application of the article(s) you read.
+		\item What are their arguments?
+		\item Why do they think it is significant?
+		\item How significant is it to our project?
+	\end{itemize}	
+	
+	\section{Freiling, \emph{Botnet Tracking} (\textbf{freiling-tracking})}
+		(Extended title omitted)\cite{freiling-tracking}
+		
+		This article explores how DDoS attacks can be prevented by tracking and disabling botnets. The authors argue that an automated method can be set up to infiltrate and analyze them, leading to the eventual shutdown of the C\&C server. 
+		
+		An empirical method is used, where two honeypots are setup with custom software to emulate shellcode, downloading files, and more. A honeywall is also set up to monitor the communications sent between the bot and the C\&C server. Analysis is also performed --- sometimes even reverse engineering --- in order to craft convincing fake bots that will infiltrate the network. 
+		
+		
+		Freiling demonstrates that it is feasible to prevent DDoS without investing in more resources or additional infrastructure. He has tracked several botnets using this method already. In fact he even does so in an automated way. By discovering the source of commands and compromised bots, he proposes that with the cooperation of the network operator or DNS provider these servers could be shut down, decreasing the threat of being attacked by these botnets.
+		
+		
+		This paper gives insight to the vulnerability of botnets to the white-hat community. Some of the ways that bots try to avoid detection can be seen through. For example, sometimes shellcode is encrypted with a one-time pad in order to sneak past IDSs, and so needs XOR decoders. The researchers have developed an XOR decoder detector, and after decoding the code, it uses pattern detection for analysis of the data.
+		
+		It also appears that a portion of the security of botnets comes from obscurity. Some of the IRC C\&C servers are modified such that they are no longer standards compliant and so normal IRC clients cannot connect to them. Sometimes the servers also hide the IPs of clients that have joined the server, obscuring the scope of the botnet. (However, the botnet these researchers observed did not obfuscate the IPs)
+		
+		The method they propose appears to work well for C\&C-based botnets, but can it be modified to work with, say P2P\footnote{Note to self: read up on what makes P2P different since I'm actually a bit foggy on that} botnets? What is the essence of this method against botnets? It appears to be related to the predictability of botnet behaviour. This method relies on the aggressive spreading of the botnet, since (apparently) there was one instance where the sensor was infected within seconds of being connected to the internet. This suggests that perhaps bots should be made to spread more passively by inciting users to run them willingly. However the authors have noted that it is possible to create 'spidering' honeypots that actively search for malware as well.
+		
+		How could a botmaster protect themselves from such an analysis? I think that they should have some way of guaranteeing that any malware installation is done unknowingly on the victim's side. This is an extremely difficult condition to guarantee, though. I will think more on this.
+	\printbibliography
+\end{document}
