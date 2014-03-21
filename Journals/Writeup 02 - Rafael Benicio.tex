@@ -1,0 +1,42 @@
+Document
+
+Your Botnet is My Botnet: Analysis of a Botnet Takeover
+
+Brett Stone-Gross, Marco Cova, Lorenzo Cavallaro, Bob Gilbert, Martin Szydlowski,
+Richard Kemmerer, Christopher Kruegel, and Giovanni Vigna
+
+On this paper, the authors related some behaviors that they found while they were observing some infected bots. 
+Also, the article starts talking about basic idea of bot, botnets, C&C, botmaster such as their functions, kind of attacks, and etc.They had two approach containing passive analysis and infiltration. Basically, Approach containing is based on effects and queries like DNS and DNA Blacklist. Futhermore, Infiltration uses malware responsable to simulate a bot and join a botnet to perform analysis from the inside. There is vulnerability according with the text because all the comunication is done by protocols.
+
+Background
+
+It describes torpig attacks that it has been distributed to its victims as part of Mebroot.
+Torpig has been distributed to its victims as part of Mebroot. Mebroot is a rootkit that takes control of a machine by replacing the system’s Master Boot Record (MBR). This allows Mebroot to be executed at boot time, before the operating system is loaded, and to remain undetected by most anti-virus tools. Some people are infected through Drive by download. Javascript code launches a bunch of componentes, controls and plugins. Most of attacks try to get information from users.  
+
+Domain Flux
+
+Identify C&C using IP address, DNS and P2P overlays.
+Sometime ago they used IP Fast flux techniques. IP Fast flux uses a single domain name. Domain flux solves this issue. With this each bot uses a domain generation algorithm to compute a list of domain names. 
+Domain flux is also used to contact medroot C&C Servers.
+
+Taking control of the botnet
+
+they concluded that  Mebroot domains, in fact, allow botmasters to upgrade, remove, and install new malware components at any time, and are tightly controlled by the criminals. It is unclear why the controllers of the Mebroot botnet did not update the Torpig domain algorithm sooner to thwart our sinkholing.
+
+
+Sinkholing Preparation
+
+they had two different hosts and they lose access from one of them. Instead of this they had backup. They observed during a time some bots. On their machines, we set up an Apache web server to receive and log bot requests, and they recorded all network traffic1. They then automated the process of downloading the data from our hosting providers. Once a data file was downloaded, we removed it from the server on the hosting provider. Therefore, if their servers were compromised, an attacker would not have access to any historical data. 
+
+Analysis
+
+we have collected almost 70GB of data over a period of ten days. The wealth of information that is contained in this data set is remarkable.All bots communicate with the Torpig C&C through HTTP POST requests. The URL used for this request ontains the hexadecimal representation of the bot identifier and a submission header. The body of the request contains the data stolen from the victim’s machine, if any.
+
+
+
+Authors
+
+E. Florio and K. Kasslin. Your computer is now stoned(...again!). Virus Bulletin, April 2008.
+GMER Team. Stealth MBR rootkit.http://www2.gmer.net/mbr/, 2008.
+P. Kleissner. Analysis of Sinowal.http://web17.webbpro.de/index.php?page=analysis-of-sinowal, 2008.
+D. Jackson. Untorpig. http://www.secureworks. com/research/tools/untorpig/, 2008.
