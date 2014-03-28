@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{biblatex}
+\addbibresource{../Papers/Unorganized/unorganized.bib}
+
+\title{Write-up 3}
+\author{Kevin}
+\date{March 28, 2014}
+
+\begin{document}
+	\maketitle
+
+\section{Questions}
+	\begin{itemize}
+		\item What is the main point or application of the article(s) you read.
+		\item What are their arguments?
+		\item Why do they think it is significant?
+		\item How significant is it to our project?
+	\end{itemize}	
+	\section{Barford, \emph{An Inside Look at Botnets}} (\textbf{barford-book})
+		
+	Rather than a paper it seems this is actually a book chapter.
+
+	The chapter provides some in-depth analysis of four different botnets: AgoBot, SDBot, SpyBot, and GT Bot. The authors compare the botnets in terms of architecture, control mechanisms, host control mechanisms, and more.
+
+	In terms of architecture, most botnets seem to be tending towards a modular, extensible framework. For example SDBot has a large number of patches that extend its functionality to include more classical botnet capabilities like DDoS attacks and sniffers.
+
+	All of these bots run off an IRC C\&C based control structure. The chapter also includes some explanation of the protocols that the various bots employ. In terms of propagation, these bots appear to mostly use simple scanning techniques. A list of exploits that these botnets are capable of using can be found in the chapter.
+
+	One method that is used by some of these botnets is to evade signature detection by using polymorphism. Of the four, only Agobot has this capability. With this, the bot's binary changes after every execution (or on propagation). Although, I believe that in this context they are referring to the actual transmission of data.
+
+	The final parameter observed in the chapter are 'deception mechanisms', or rootkits, which are used to evade detection after infection. Only Agobot had sophisticated mechanisms, which include defenses against debugging software (OllyDbg, SoftIce, etc.) and tests for VMWare. It also has the ability to kill antiviruses or change their DNS entries to point to localhost.
+
+	Again no mention is made on how the actual botnet is secured which suggests a trend towards our general thesis topic. The last two sections would probably be the most relevant as they outline some methods that botnets use to evade detection. 
+
+	I'm not sure if I've summarized too much, or if I haven't given enough elaboration.
+
+	\section*{Other}
+
+	I've also found some other papers regarding botnet detection and similar topics. They might be a bit useful but I'm not certain. I've flipped through them but it doesn't look like they talk much about their evasion techniques. Of course there isn't any in-depth talk about security features either, as expected.
+	\printbibliography
+\end{document}
