@@ -1,0 +1,32 @@
+http://www.youtube.com/watch?v=dBIfIwKfhw8&feature=share&list=PLCDA5DF85AD6B4ABD&index=11
+Prowling Peer to Peer Botnets After Dark:  http://youtu.be/sJiknNjeIE8
+    ZeroAccess Version 1- you can query each bot to get a list of its peer; returns 256 partners and how active they are (a timestamp). These guys had a symmetric key but it got reverse engineered.  Favours recently active bots because you want bots that actually are useful.
+    ZeroAccess Version 2 - reduced number of bots returned; message size was reduced because of scale of botnet; ip addresses sorted, duplicates are pruned; invalid ones are not filtered (for some reason)
+    MinerBot - HTTP, trivial protocol; each bot had its own http server and you could easily get the list of partners each time; as well as other files
+    nginx - you can be certain its a proxy server.  Most p2p botnets are actually hybrids which connect to the end server through a proxy.
+    protocols like ZA and MB make it easy to enumerate botnets.
+
+Crawling:
+    recursively enumerating peers.
+    want good crawling speed.  structure of graph changes constantly; can never get 100% accurate picture; one issue is unresponsive peers (and you dont always know why).
+    
+    Zeus - most peers are not actually reachable. Known peers numbered 12000+ but alive peers were around 2500.
+    both graphs converge really quickly; this gives you a size estimation.
+    cant reach all bots because they are behind NAT; etc.
+
+Why crawl P2P botnets?
+    reconnaissance - size estimation, geographic distribution, infection tracking
+    Attacks - send commands to identified nodes, manipulate P2P infrastructure via poisoning and sinkholing.
+            - nodes that you can talk to are usually the backbone of the botnet.
+    **Question: what advantage does this have for hackers?
+
+Crawling Strategies:
+    always dynamic; if you're fast enough you can learn the biggest part of the reachable machines.
+    check whether peer is known or not; ip churn is big.
+    some p2p networks have unique ids, such as ones in overlay networks.
+    node injection can give better estimates because the injected node information is eventually propagated to unreachable nodes.
+    many botnets use udp because the overhead is left. Synchronization is required however and theres packet loss.
+
+Active Bots
+    can become inactive; temporarily unreachable, packet loss; how many attempts before peer considered inactive? really important and should be tuned if you plan on enumerating the bot.
+    Kelios: never more than 700 backbone nodes.

