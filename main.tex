@@ -139,17 +139,17 @@ Centralized command and control structures are attractive due to the fact that t
 
 Another form of communication that is utilized by botnets are \emph{gossip protocols}. This kind of protocol relies on nodes passing on information that is learned to other nodes, thereby propagating it throughout the network. Gossip protocols are employed by peer-to-peer botnets \cite{defcon:prowling}, but can be utilized by hierarchical command and control botnets as well. Due to the need for communication to spread by nodes, the propagation speed is usually slower than direct messaging. However in larger botnets, this reduces the strain on the central C\&C server by delegating the command passing to other bots.
 
+%
+%\section{The Getaway Car: How Data is Exfiltrated}
+%Evolution of Collection/Anonymity (the getaway car)
+%    - anonymity (tor, proxy servers, voip)
+%    - location (fast flux, voip)
+%    - how is communication different when sending info back to server?
+%
+%Once data has been collected by bots, the process of exfiltrating the data back to the botmaster for monetization begins.  
+%
 
-\section{The Getaway Car: How Data is Exfiltrated}
-Evolution of Collection/Anonymity (the getaway car)
-    - anonymity (tor, proxy servers, voip)
-    - location (fast flux, voip)
-    - how is communication different when sending info back to server?
-
-Once data has been collected by bots, the process of exfiltrating the data back to the botmaster for monetization begins.  
-
-
-\section{The Rise of Peer-to-Peer Botnets}
+\section{How Peer-to-Peer Botnets Are Implemented}
 
 Contemporary botnets like ZeroAccess, MinerBot, Zeus, and Storm have adopted hybridized network structures in an effort to combine the resilience of peer-to-peer networks with the controllability of centralized servers.  Centralized servers are easy to construct, but have a single point of weakness: the command and control server itself \cite{wang:p2p}.  The nature of the network topology is surprisingly similar between peer-to-peer botnets;  ~\ref{fig:p2p-architecture} outlines the topology of peer-to-peer networks found in the likes of botnets such as ZeroAccess, MinerBot, Zeus, Storm, Conflicker, and Kelihos.
 
@@ -195,24 +195,24 @@ Domain generation algorithms, also known as domain flux and fast flux, grant bot
 
 
 
-
-Major Driver: Resilience
-Major Limitation: Control
-Evolution of Topologies
-    - peer list, backbone nodes, unreachable nodes
-    - ip churn/crawling
-    - security/system benefits
-    -topology (overlays, structured)
-
-
-Control
-resist to take-over / ownership
-collection / 
-over net / file sharing (torrent equivalent?)
-threats -> flooding
-
-(2 pages)
-definition, relevance, depth/breadth
+%
+%Major Driver: Resilience
+%Major Limitation: Control
+%Evolution of Topologies
+%    - peer list, backbone nodes, unreachable nodes
+%    - ip churn/crawling
+%    - security/system benefits
+%    -topology (overlays, structured)
+%
+%
+%Control
+%resist to take-over / ownership
+%collection / 
+%over net / file sharing (torrent equivalent?)
+%threats -> flooding
+%
+%(2 pages)
+%definition, relevance, depth/breadth
 
 
 \section{Conclusion}
