@@ -32,3 +32,6 @@
 *.tdo
 *.xml
 *-blx.bib
+*.bcf
+Journals/*.pdf
+main.pdf

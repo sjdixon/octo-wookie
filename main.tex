@@ -13,8 +13,8 @@
 % ---------------------------------------------------------------------------------------------------------------
 
 \documentclass{acm_proc_article-sp}
-\usepackage{biblatex}
-\bibliography{biblio}
+\usepackage[style=numeric,backend=biber]{biblatex}
+\addbibresource{biblio}
 
 \begin{document}
 
@@ -80,7 +80,7 @@ Major Weakness: Resilience
 
 \section{How Infection is Implemented}
 % How Bots Get Infected
-    - how systems get infected
+    %- how systems get infected
 
 Bots are infected by specifics malwares that are responsible to cause damages using the most common attacks through email and drives-by downloads. By using email attachment some users can be attacked by someone because they do not pay attention this attachment is part of the attack. Email attachment is one of the most common attack used by attackers. Basically, the user is led to believe that the attachment contains safe information and it might be an important document such as bills. Instead, it contains malware that is activated as soon as the user opens the attachment. One relevant information is not a good practice of opening unknown files even if it is sent by a reliable person. For this specific attack, you can deselected the service to hide extensions from files. Then we can observe if there is a execution file or not. When the computer is part of the botnet when computer is infected.
 
@@ -88,11 +88,11 @@ There is another activity using malicious code such as drive-by downloads. For t
 
 Therefore, 
 
-    - registration of new bots
+   % - registration of new bots
 
 One way how botmasters can register new bots is using attacks mechanisms to obtain new bots and collect information from users. Some Attackers have more expertise to propagate malicious code in computers because some people do not have much knowledge about it. By using tools and methods we observed how easily people can create a new botnet and how it can become a huge global market. People use to work with botnets because its part of their business as well as they can get millions of dollars working with. They can sell bots and also they can get bot from another botnet. Therefore, vulnerables systems and tools are used to exploit where bots are located and gain backdoor access to these systems becoming easier execution of bot malware by uploading or commanding the victim computer. People use to do direct and indirect techniques to spread an infected bot.  Peer-to-peer is also used to propagate malwares. Bot Malware uses HTTP, IRC protocol and can be created by other botnets. 
 
-    - avoiding detection by anti virus
+    %- avoiding detection by anti virus
 \subsection{Avoiding Detection by Antiviruses}
 Because the main method through which botnets propagate is by malicious code, they must have methods to thwart antivirus utilities. Otherwise they would be detected and rendered unable to infect a target machine. 
 
@@ -133,7 +133,7 @@ Due to the prominence of IRC as a method for botnets to communicate, some corpor
 
 Similar to the presence of multiple substructures for IRC-based botnets, Ollmann characterized C\&C botnets in general into several topologies \cite{ollmann:topology}, some of which appear to have counterparts to the IRC substructures. One of these is called the \emph{Star topology}. In this setup, each bot communicates directly with a single, centralized C\&C server. Another topology, similar to the idea of bridged botnets, is the multi-server C\&C topology. As the name implies, this method introduces several servers that act as command and control servers to the botnet. Another structure that Ollmann mentions is the hierarchical topology, in which bots are organized in a hierarchy and bots that are higher up can issue commands to bots further down in the tree.
 
-Centralized command and control structures are attractive due to the fact that there is a single point of access for a botmaster, for instance through some web browser-based admin console. Through this point, they can command botnets to download new payloads, launch certain attacks or scans, or propagate on their network. For example, the Zeus botnet comes with a browser-based control panel, where botmasters can send new rules to, or collect data from bots. Using this application, they can also group different bots together and name them individually \cite{blackhat:zeus}. For IRC-based botnets, commands are typically made by setting the channel topic to some string recognized by the bots to be a command \cite{honeynet-appendix}. In both cases the botmaster still has to authenticate themselves to the bot, typically by providing a password. Botnets that use HTTP or HTTPS work in a similar way to those that are IRC-based: they poll a C\&C web server while waiting for new commands to be received \cite{borgaonkar:analysis}.
+Centralized command and control structures are attractive due to the fact that there is a single point of access for a botmaster, for instance through some web browser-based admin console. Through this point, they can command botnets to download new payloads, launch certain attacks or scans, or propagate on their network. For example, the Zeus botnet comes with a browser-based control panel, where botmasters can send new rules to, or collect data from bots. Using this application, they can also group different bots together and name them individually \cite{blackhat:zeus}. For IRC-based botnets, commands are typically made by setting the channel topic to some string recognized by the bots to be a command \cite{honeynet:appendix}. In both cases the botmaster still has to authenticate themselves to the bot, typically by providing a password. Botnets that use HTTP or HTTPS work in a similar way to those that are IRC-based: they poll a C\&C web server while waiting for new commands to be received \cite{borgaonkar:analysis}.
 
 Another form of communication that is utilized by botnets are \emph{gossip protocols}. This kind of protocol relies on nodes passing on information that is learned to other nodes, thereby propagating it throughout the network. Gossip protocols are employed by peer-to-peer botnets \cite{defcon:prowling}, but can be utilized by hierarchical command and control botnets as well. Due to the need for communication to spread by nodes, the propagation speed is usually slower than direct messaging. However in larger botnets, this reduces the strain on the central C\&C server by delegating the command passing to other bots.
 
@@ -151,11 +151,11 @@ Once data has been collected by bots, the process of exfiltrating the data back 
 
 Contemporary botnets like ZeroAccess, MinerBot, Zeus, and Storm have adopted hybridized network structures in an effort to combine the resilience of peer-to-peer networks with the controllability of centralized servers.  Centralized servers are easy to construct, but have a single point of weakness: the command and control server itself \cite{wang:p2p}.  The nature of the network topology is surprisingly similar between peer-to-peer botnets;  ~\ref{fig:p2p-architecture} outlines the topology of peer-to-peer networks found in the likes of botnets such as ZeroAccess, MinerBot, Zeus, Storm, Conflicker, and Kelihos.
 
-\begin{figure}[here]
+\begin{figure*}[hbt]
 \includegraphics[width=0.9\textwidth]{p2p-architecture.png}
 \caption{Peer-to-Peer Botnet Topology}
 \label{fig:p2p-architecture}
-\end{figure}
+\end{figure*}
 
 
 When individual bots want to receive commands from the botmaster, they send a request to some central components, through the use of peers, proxy nodes, and proxy servers. There is usually a layer of proxy servers being used, in order to provide redundancy in case they are taken down. Relaying requests in this manner helps disguise the location of the bot server on the internet \cite{defcon:prowling}.
@@ -208,7 +208,7 @@ definition, relevance, depth/breadth
 
 %Properties - needs secure
 
-1
+
 % Technique
 %small footprint
 %validation
