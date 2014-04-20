@@ -152,7 +152,7 @@ Once data has been collected by bots, the process of exfiltrating the data back 
 Contemporary botnets like ZeroAccess, MinerBot, Zeus, and Storm have adopted hybridized network structures in an effort to combine the resilience of peer-to-peer networks with the controllability of centralized servers.  Centralized servers are easy to construct, but have a single point of weakness: the command and control server itself \cite{wang:p2p}.  The nature of the network topology is surprisingly similar between peer-to-peer botnets;  ~\ref{fig:p2p-architecture} outlines the topology of peer-to-peer networks found in the likes of botnets such as ZeroAccess, MinerBot, Zeus, Storm, Conflicker, and Kelihos.
 
 \begin{figure}[here]
-\includegraphics[width=0.9\textwidth]{p2p-architecture.png}
+\includegraphics[width=0.5\textwidth]{p2p-architecture.png}
 \caption{Peer-to-Peer Botnet Topology}
 \label{fig:p2p-architecture}
 \end{figure}
@@ -163,6 +163,16 @@ When individual bots want to receive commands from the botmaster, they send a re
 Individual bots maintain a list of peers, obtained by communicating with other bots in the network.  In the ZeroAccess protocol, the peer list consists of a list of IP addresses and a timestamp indicating how recently the bot was active; the list was sorted in order of how recently the bot was active. In version 1 of the protocol, the peer list was 256 bots long and would bots that have not been active recently; in version 2, the peer list is 16 bots long and showed bots only if they were active recently.  It was suggested that the length of the peer lists were trimmed in order to reduce the traffic footprint of the botnet, as the botnet grew in size  \cite{defcon:prowling}.  
 
 However, not all bots in the peer list are reachable.  Bots can be unreachable for a variety of reasons, such as being located inside NAT networks, or due to IP address churn.   Consequently, P2P botnets rely extensively on nodes which can be reached from anywhere; these nodes form the backbone of the botnet because of their positioning \cite{defcon:prowling}.
+
+Message gossiping is utilized to propagate information\cite{stone:p2p}. A gossip protocol is a protocol in which a bot, in response to receiving information from another bot, forwards it to their peers. Each botnet uses customized message types and gossip protocols. For example, the Zeus botnet has the following message types:\cite{zeus:protocol}
+\begin{itemize}
+\item version request and reply - to determine a bot’s current binary and configuration file\cite{zeus:protocol}.
+\item peer list request and reply - to determine who the bot communicates with\cite{zeus:protocol}.
+\item data request and reply - used to pull updates to the Zeus bot's binary or configuration files via UDP\cite{zeus:protocol}.
+\item Proxy Reply - a signed message containing a list of proxies returned sent in response to a version request with some piggybcaked proxy request markers\cite{zeus:protocol}.
+\item Proxy Announcement - a message announcing that a bot has been appointed as a proxy by the botmasters.  This message is then forwarded to the peer list of the bots who received the message.  To minimize the traffic footprint, this message type includes a time-to-live field which is decremented each time the message is forwarded; after reaching 0, bots do not forward the announcement any further\cite{zeus:protocol}.
+\item C2 Message Type - a specialized, encrypted message exchanged between harvester bots and proxies, exchanged over HTTP and TCP protocols.  C2 message requests are sent by harvester bots to inform the server of the type of information harvested by the bot; the reply allows Zeus to tell the bot what to do with the information\cite{zeus:protocol}.
+\end{itemize}
 
 Research into peer-to-peer botnets has yielded a number of useful techniques for reconnaissance and disruption.  Reconnaissance is aimed at determining the size, topology, and vulnerabilites of a botnet, whereas disruption techniques are aimed at shutting down the botnets for good.  Two common reconnaissance techniques are crawling and sensor injection.  Crawling techniques use the peer-list mechanism implemented by botnets to determine all peers within the network, and who they are connected to. A number of factors limit the accuracy of crawling techniques; these include IP churn, non-routable peer clusters, peers with multiple IP addresses, and the frequency with which bots communicate with other bots.  Sensor injection techniques count the number of peers in a botnet by using the researcher’s own machine as a relay node; this has the same effect as crawling does, except that some previously unreachable nodes will communicate with the sensor node.  In both reconnaissance techniques, a final approximate figure for the size of the botnet is obtained when the number of bots counted by the crawler or sensor converges towards a specific value \cite{stone:p2p}\cite{defcon:prowling}.
 
