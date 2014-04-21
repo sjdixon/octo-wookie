@@ -11,7 +11,8 @@
 %\addbibresource{Papers/ESORICS/esorics.bib}
 %Note: ‘ ’ in the final document should be changed to plain apostrophes '
 % Also “ ” should be replaced by plain quotation marks "
-%\tolerance=1000 % force latex to be a bit more generous with hyphenation and line breaking?
+\tolerance=1000 
+% force latex to be a bit more generous with hyphenation and line breaking?
 
 \begin{document}
 
@@ -154,7 +155,7 @@ HTTP is often combined with peer-to-peer networking in a \emph{gossip protocol}.
 
 Ollmann et al. classified gossip-based C\&C botnets into several topological groups\cite{ollmann:topology}, some of which appear to have counterparts to the IRC substructures. One of these is called the \emph{Star topology}. In this setup, each bot communicates directly with a single, centralized C\&C server. Another topology, similar to the idea of bridged botnets, is the multi-server C\&C topology. As the name implies, this method introduces several servers that act as command and control servers to the botnet. In a hierarchical topology, bots are organized in a hierarchy, and bots that are higher up in the hierarchy can issue commands to bots further down in the tree.
 
-\section{How Data is Exfiltrated from Harvester Bots}
+\section{How Data Exfiltrated is Implemented}
 %Evolution of Collection/Anonymity (the getaway car)
 %    - anonymity (tor, proxy servers, voip)
 %    - location (fast flux, voip)
