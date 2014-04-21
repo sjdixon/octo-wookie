@@ -13,6 +13,8 @@
 % ---------------------------------------------------------------------------------------------------------------
 
 \documentclass{acm_proc_article-sp}
+%\usepackage{biblatex}
+%\bibliography{biblio}
 \usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{biblio.bib}
 \addbibresource{Papers/SECURWARE/securware.bib}
@@ -154,7 +156,7 @@ Another form of communication that is utilized by botnets are \emph{gossip proto
 Contemporary botnets like ZeroAccess, MinerBot, Zeus, and Storm have adopted hybridized network structures in an effort to combine the resilience of peer-to-peer networks with the controllability of centralized servers.  Centralized servers are easy to construct, but have a single point of weakness: the command and control server itself \cite{wang:p2p}.  The nature of the network topology is surprisingly similar between peer-to-peer botnets;  ~\ref{fig:p2p-architecture} outlines the topology of peer-to-peer networks found in the likes of botnets such as ZeroAccess, MinerBot, Zeus, Storm, Conflicker, and Kelihos.
 
 \begin{figure}[h]\centering
-\includegraphics[width=0.45\textwidth]{p2p-architecture.png}
+\includegraphics[width=0.45\textwidth,natwidth=801,natheight=538]{p2p-architecture.png}
 \caption{Peer-to-Peer Botnet Topology}
 \label{fig:p2p-architecture}
 \end{figure}
@@ -213,32 +215,31 @@ Domain generation algorithms, also known as domain flux and fast flux, grant bot
 %
 %(2 pages)
 %definition, relevance, depth/breadth
+\subsection{Mathematical Underpinning of Botnets}
 
+Researchers have proposed a variety of metrics for quantitatively measuring the robustness and efficiency of botnets.  Both attributes matter from a security perspective: efficient botnets produce less traffic, and therefore go undetected for longer.  The robustness of the network, on the other hand, is the major aim of peer-to-peer network structures such as those implemented for botnets such as Zeus and ZeroAccess.  Botnets routinely gain and lose new members over time; a higher degree of connections between bots provides fault tolerance and recovery, as well as resilience against attacks such as sinkholing\cite{botnet:metrics}.  Dagon et. al proposed a number of metrics for measuring the robustness of a botnet, such as the following:
+
+\begin{itemize}
+\item inverse geodesic distance (a normalized measurement which reflects the overall connectivity of the botnet network topology)
+\item the network diameter (which measures the average geodesic length between two nodes in a network)
+\item a clustering coefficient to measure the local transitivity (ie. the likelihood that three nodes appear in a “triad”) in a neighborhood of peers.
+\end{itemize}
+
+However, it does not appear that these metrics have been collected for contemporary botnets.
 
 \section{Conclusion}
-%Conclusion (1 page)
 
-%Properties - needs secure
+Contemporary botnets are highly sophisticated peer-to-peer networks with some central components, and are frequently equipped with fallback mechanisms to ensure their resilience against takedown and infiltration attempts.  Botmasters employ a wide range of means in order to achieve infection, download the payload bot program, and disable security systems on the compromised machine.
 
-1
-% Technique
-%small footprint
-%validation
-%quick to update
-%xml, topology, (web vs tree)
-%secure
-%against takeover, analysis, penetration
-%untraceable
-%anonymity, P2P, getawaster 
-%well-position
-%browser, service vs memories
-%availability
-%independent, node autonomy 
-%hidden
-%anti- debugger, anti-sniffer, Anti anti Virus
-%frustration
-%admin privilege, user lockout, anti - honeyspot,  difficult to RR
+For infections based on social engineering and drive-by-downloads, malware authors can bypass the security offered by anti-virus programs by using polymorphic engines, which scramble the binary code of the application in such a way as to make a bot program unrecognizable to the anti-virus.  In order to prevent the bot program from being reverse-engineered by researchers, malware authors have employed a variety of schemes, including features which detect the presence of virtualization services and debuggers.
 
+After infection is achieved, the bot is ready to join the botnet.  The challenge faced by botnets is to make it easy to join, but hard to infiltrate.  The advantage enjoyed by researchers is that botnets depend upon the communication of mutually untrustworthy parties\cite{stone:p2p}. In order to guard the botnet against infiltration and sinkholing attempts, botnets have employed a variety of different security mechanisms. 
+
+In the Sality botnet, bots implement a reputation scheme in which they internally track the reputation of each of their peers, and overwrite low-reputation entries in their peer list.  However, researchers have been able to bypass the scheme by reverse-engineering the protocol in order to create a high-reputation bot; as a result, they were able to poison high-reputation entries and sinkhole other components of the network.
+
+In the Zeus network, sinkhole protection is provided by ensuring that bots have a limited number of peers, and by promoting the retention of peer lists.  These effectively limit the effects of change to the network, thereby boosting the resiliency of the botnet.  Furthermore, even if the botnet could be taken down, there are a number of fallback mechanisms that allow peers to re-establish themselves by communicating with some central components.
+
+Meanwhile, in terms of their capacity, botnets continue to be a growing threat.  Command and control consoles provide a single point of access to botmasters to administer thousands of compromised machines at the click of a mouse.  Usage of P2P technologies improve the resilience of botnets, but so far, most botnets continue to use some central components to maintain their hold on the control infrastructure. Innovations like VOIP-based botnets provide botmasters a means of reaching new and hitherto unreachable networks without the need for a central server, while exploiting a common, readily available channel which is much more difficult to inspect or protect\cite{defcon:voip}.  Their effect has yet to be seen.
 
 \printbibliography{}
 
